@@ -1,0 +1,9 @@
+.container h1 {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+}
+
+.container button {
+    margin-bottom: 30px;
+}

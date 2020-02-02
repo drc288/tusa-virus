@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-import re
 """ Pass the str to number """
+import re
 
 
 def str_to_num(str_num):
@@ -46,7 +46,6 @@ def str_to_num(str_num):
             str_num = str_num[res.span()[1]:]
         else:
             pass
-    
     if re.search(pattern_million, str_num):
         res = re.search(pattern_million, str_num)
         if res.span()[0] != 0:
@@ -54,7 +53,6 @@ def str_to_num(str_num):
             str_num = str_num[res.span()[1]:]
         else:
             pass
-    
     if re.search(pattern_thousand, str_num):
         res = re.search(pattern_thousand, str_num)
         if res.span()[0] != 0:
@@ -62,7 +60,6 @@ def str_to_num(str_num):
             str_num = str_num[res.span()[1]:]
         else:
             pass
-    
     if re.search(pattern_hundred, str_num):
         res = re.search(pattern_hundred, str_num)
         if res.span()[0] != 0:
@@ -70,7 +67,6 @@ def str_to_num(str_num):
             str_num = str_num[res.span()[1]:]
         else:
             pass
-    
     # Pass the string representation to number
     if not billion:
         billion_nums = 0
@@ -78,32 +74,33 @@ def str_to_num(str_num):
         billion_infected = [value for key, value in numbers.items() if key in billion]
         for infected in billion_infected:
             billion_nums *= infected
-    
     if not million:
         million_nums = 0
     else:
         million_infected = [value for key, value in numbers.items() if key in million]
         for infected in million_infected:
             million_nums *= infected
-    
     if not thousand:
         thousand_nums = 0
     else:
         thousand_infected = [value for key, value in numbers.items() if key in thousand]
         for infected in thousand_infected:
             thousand_nums *= infected
-
     if not hundred:
         hundred_nums = 0
     else:
         hundred_infected = [value for key, value in numbers.items() if key in hundred]
         for infected in hundred_infected:
             hundred_nums *= infected
-
     num_infected = [value for key, value in numbers.items() if key in str_num]
     for infected in num_infected:
             total_infected += infected
-    
-    # Get the total
-    total_infected = total_infected + billion_nums + million_nums + thousand_nums + hundred_nums
+    # Checking the data type
+    for key in numbers.keys():
+        if key in str_num:
+            total_infected = total_infected + billion_nums + million_nums + thousand_nums + hundred_nums
+        else:
+            continue
+    if total_infected == 0:
+        return None
     return total_infected
